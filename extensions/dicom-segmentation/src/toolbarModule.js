@@ -59,7 +59,7 @@ const TOOLBAR_BUTTON_TYPES = {
         commandName: 'setToolActive',
         commandOptions: { toolName: 'RectangleScissors' },
       },
-      {    //矩形框工具
+      /*{    //矩形框工具
         id: 'CorrectionScissors',
         label: 'CorrectionScissors',
         icon: 'circle-o',
@@ -67,7 +67,7 @@ const TOOLBAR_BUTTON_TYPES = {
         type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
         commandName: 'setToolActive',
         commandOptions: { toolName: 'CorrectionScissorstest' },
-      },	  
+      },*/	  
     ],
   },
 ]; 

@@ -10,6 +10,7 @@ import CornerstoneViewportDownloadForm from './CornerstoneViewportDownloadForm';
 
 //
 
+
 const scroll = cornerstoneTools.import('util/scroll');
 
 const { studyMetadataManager } = OHIF.utils;
@@ -164,43 +165,10 @@ const commandsModule = ({ servicesManager }) => {
 	draw_test : ({ viewports }) => {
 		
 		console.log('hi');
-		const brushTool = cornerstoneTools.BrushTool;
-		const element = getEnabledElement(viewports.activeViewportIndex);
-		if (!element) {
-			return;
-		}
-		const enabledElement = cornerstone.getEnabledElement(element);
-	    
-		console.log(element);
+
 	
-		cornerstoneTools.setToolActive('Brush', { mouseButtonMask: 1 });
-	
-		var width = 600;
-		var height = 600;
-		var channel = 1;
-		let pixelData = new Uint8ClampedArray(width * height * channel);
-		for (let i = 0; i < 500; i++) {
-			for (let j = 0; j < 500; j++) {
-				pixelData[i*width + j] = 1;
-			}
-		}
-		let toolState = cornerstoneTools.getToolState(element,'Brush');		
-		console.log(pixelData);
-	
-		if (toolState) {
-			toolState.data[0].pixelData = [...pixelData];
-			console.log('h1');
-		
-		} else {
-			cornerstoneTools.addToolState(element,'Brush',{ pixelData });
-			toolState = cornerstoneTools.getToolState(element,'Brush');
-			console.log('h2');
-		
-		}
-	
-		toolState.data[0].invalidated = true;
-	
-		cornerstone.updateImage(element);
+		cornerstoneTools.setToolActive('Brush2', { mouseButtonMask: 1 });
+
 	
 	},  	//draw_test
 	
