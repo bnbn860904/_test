@@ -227,12 +227,20 @@ const definitions = [
         },
       },
 	  { //draw_test
-        id: 'draw_test',
-        label: 'draw_test',
-        icon: 'adjust',
+        id: 'tumor segmentation(AI)',
+        label: 'tumor segmentation(AI)',
+        icon: 'edit',
         //
         type: TOOLBAR_BUTTON_TYPES.COMMAND,
         commandName: 'draw_test',
+      },
+	  { //draw_CV
+        id: 'tumor segmentation(CV)',
+        label: 'tumor segmentation(CV)',
+        icon: 'edit',
+        //
+        type: TOOLBAR_BUTTON_TYPES.COMMAND,
+        commandName: 'draw_CV',
       },
     ],
   },

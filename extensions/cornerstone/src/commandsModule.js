@@ -171,6 +171,16 @@ const commandsModule = ({ servicesManager }) => {
 
 	
 	},  	//draw_test
+		    //draw_CV
+	draw_CV : ({ viewports }) => {
+		
+		console.log('hi');
+
+	
+		cornerstoneTools.setToolActive('Brush3', { mouseButtonMask: 1 });
+
+	
+	},  	//draw_CV
 	
     showDownloadViewportModal: ({ title, viewports }) => {
       const activeViewportIndex = viewports.activeViewportIndex;
@@ -303,7 +313,7 @@ const commandsModule = ({ servicesManager }) => {
       window.store.dispatch(
         setViewportSpecificData(activeViewportIndex, displaySet)
       );
-
+      
       refreshCornerstoneViewports();
     },
   };
@@ -423,6 +433,11 @@ const commandsModule = ({ servicesManager }) => {
     },
     draw_test: {  //draw_test
       commandFn: actions.draw_test,
+      storeContexts: ['viewports'],
+      options: {},
+    },
+    draw_CV: {  //draw_CV
+      commandFn: actions.draw_CV,
       storeContexts: ['viewports'],
       options: {},
     },	

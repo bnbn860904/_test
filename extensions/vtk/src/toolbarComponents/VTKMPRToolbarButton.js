@@ -131,6 +131,47 @@ function VTKMPRToolbarButton({
   );
 }
 
+///////////////////////////////
+function VTKMPRToolbarButton_0({
+  parentContext,
+  toolbarClickCallback,
+  button,
+  activeButtons,
+  isActive,
+  className,
+}) {
+  const { id, label, icon } = button;
+  const { viewportSpecificData, activeViewportIndex } = useSelector(state => {
+    const { viewports = {} } = state;
+    const { viewportSpecificData, activeViewportIndex } = viewports;
+
+    return {
+      viewportSpecificData,
+      activeViewportIndex,
+    }
+  });
+
+  isVisible = _isDisplaySetReconstructable(
+    viewportSpecificData,
+    activeViewportIndex,
+  );
+
+  return (
+    <React.Fragment>
+      {isVisible && (
+        <ToolbarButton
+          key={id}
+          label={label}
+          icon={icon}
+          onClick={evt => toolbarClickCallback(button, evt)}
+          isActive={isActive}
+        />
+      )}
+    </React.Fragment>
+  );
+}
+///////////////////////////////
+
 VTKMPRToolbarButton.propTypes = {
   parentContext: PropTypes.object.isRequired,
   toolbarClickCallback: PropTypes.func.isRequired,
@@ -140,4 +181,4 @@ VTKMPRToolbarButton.propTypes = {
   className: PropTypes.string,
 };
 
-export default VTKMPRToolbarButton;
+export default {VTKMPRToolbarButton ,VTKMPRToolbarButton_0};

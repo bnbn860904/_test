@@ -383,6 +383,71 @@ const commandsModule = ({ commandsManager, UINotificationService }) => {
         renderWindow.render();
       });
     },
+	////////////////////////////
+	mpr3d: async ({ viewports }) => {
+      // TODO push a lot of this backdoor logic lower down to the library level.
+      const displaySet =
+        viewports.viewportSpecificData[viewports.activeViewportIndex];
+
+      // Get current VOI if cornerstone viewport.
+      const cornerstoneVOI = getVOIFromCornerstoneViewport();
+      defaultVOI = cornerstoneVOI;
+
+      const viewportProps = [
+        {
+          //Axial
+          orientation: {
+            sliceNormal: [0, 0, 1],
+            viewUp: [0, -1, 0],
+          },
+        },
+        {
+          // Sagittal
+          orientation: {
+            sliceNormal: [1, 0, 0],
+            viewUp: [0, 0, 1],
+          },
+        },
+        {
+          // Coronal
+          orientation: {
+            sliceNormal: [0, 1, 0],
+            viewUp: [0, 0, 1],
+          },
+        },
+      ];
+
+      try {
+        apis = await setMPRLayout(displaySet, viewportProps, 1, 3);
+      } catch (error) {
+        throw new Error(error);
+      }
+
+      if (cornerstoneVOI) {
+        setVOI(cornerstoneVOI);
+      }
+
+      // Add widgets and set default interactorStyle of each viewport.
+      apis.forEach((api, apiIndex) => {
+        api.addSVGWidget(
+          vtkSVGRotatableCrosshairsWidget.newInstance(),
+          'rotatableCrosshairsWidget'
+        );
+
+        const uid = api.uid;
+        const istyle = vtkInteractorStyleRotatableMPRCrosshairs.newInstance();
+
+        api.setInteractorStyle({
+          istyle,
+          configuration: { apis, apiIndex, uid },
+        });
+
+        api.svgWidgets.rotatableCrosshairsWidget.setApiIndex(apiIndex);
+        api.svgWidgets.rotatableCrosshairsWidget.setApis(apis);
+      });
+	},
+	////////////////////////////
+	
     mpr2d: async ({ viewports }) => {
       // TODO push a lot of this backdoor logic lower down to the library level.
       const displaySet =
@@ -574,6 +639,12 @@ const commandsModule = ({ commandsManager, UINotificationService }) => {
     },
     mpr2d: {
       commandFn: actions.mpr2d,
+      storeContexts: ['viewports'],
+      options: {},
+      context: 'VIEWER',
+    },
+    mpr3d: {
+      commandFn: actions.mpr3d,
       storeContexts: ['viewports'],
       options: {},
       context: 'VIEWER',

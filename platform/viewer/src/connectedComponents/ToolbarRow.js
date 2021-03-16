@@ -188,9 +188,6 @@ class ToolbarRow extends Component {
           </div>
           {buttonComponents}
           <ConnectedLayoutButton />
-		  <a href="http://140.116.156.197:5000/patient?number=00A00101_3_24" target="_blank"> 
-		  <input type= "button" value="api_button" onclick="window.open('http://www.google.com/')" />		  
-		  </a> //new
           <div
             className="pull-right m-t-1 rm-x-1"
             style={{ marginLeft: 'auto' }}

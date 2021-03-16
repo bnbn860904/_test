@@ -7,8 +7,8 @@ import DICOMSegTempCrosshairsTool from './tools/DICOMSegTempCrosshairsTool';
  * @param {Object|Array} configuration.csToolsConfig
  */
 export default function init({ servicesManager, configuration = {} }) {
-  const { BrushTool, SphericalBrushTool, CorrectionScissorsTool,RectangleScissorsTool ,Brush2Tool} = csTools;
-  const tools = [BrushTool, SphericalBrushTool, CorrectionScissorsTool ,RectangleScissorsTool ,Brush2Tool];
+  const { BrushTool, SphericalBrushTool, CorrectionScissorsTool,RectangleScissorsTool ,Brush2Tool ,Brush3Tool, FreehandRoiTool} = csTools;
+  const tools = [BrushTool, SphericalBrushTool, CorrectionScissorsTool ,RectangleScissorsTool ,Brush2Tool, Brush3Tool, FreehandRoiTool];
 
   tools.forEach(tool => csTools.addTool(tool));
 
@@ -26,10 +26,12 @@ export default function init({ servicesManager, configuration = {} }) {
 	},
   }); 
   
-  /*csTools.addTool(CorrectionScissorsTool, {  //test
-    name: 'CorrectionScissorstest',
-    supportedInteractionTypes : null,
-  }); */  
+  /*csTools.addTool(ScaleOverlayTool, {  //矩形框
+    name: 'ScaleOverlay',
+    configuration: {
+      //alwaysEraseOnClick: true,
+	},
+  });*/  
   
 
 

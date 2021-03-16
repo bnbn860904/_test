@@ -16,7 +16,7 @@ const TOOLBAR_BUTTON_TYPES = {
     buttons: [
       {
         id: 'Brush',
-        label: 'Brush',
+        label: 'Brushtool',
         icon: 'brush',
         //
         type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
@@ -59,15 +59,16 @@ const TOOLBAR_BUTTON_TYPES = {
         commandName: 'setToolActive',
         commandOptions: { toolName: 'RectangleScissors' },
       },
-      /*{    //矩形框工具
-        id: 'CorrectionScissors',
-        label: 'CorrectionScissors',
-        icon: 'circle-o',
+      {
+        id: 'FreehandRoi',
+        label: 'FreehandRoi',
+        icon: 'measure-temp',
         //
         type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
         commandName: 'setToolActive',
-        commandOptions: { toolName: 'CorrectionScissorstest' },
-      },*/	  
+        commandOptions: { toolName: 'FreehandRoi' },
+      },
+ 	  
     ],
   },
 ]; 
